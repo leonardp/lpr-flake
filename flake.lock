@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1653250433,
-        "narHash": "sha256-UmHp2PwDgdCIxuh9FZ6H5NrLpy4G0kdFQPrUiHLpf48=",
+        "lastModified": 1653323916,
+        "narHash": "sha256-1+U2zGfTbjzdttzWIibhx8qwtm2mkWk+EHHMvDYhtHc=",
         "owner": "leonardp",
         "repo": "darknet-flake",
-        "rev": "85bbbf112e0c4e070a8ba70164c1214ce9454b08",
+        "rev": "e80d3e602487fcd4d2b13703a2d1d2c06a2ca385",
         "type": "github"
       },
       "original": {

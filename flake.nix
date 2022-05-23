@@ -21,8 +21,8 @@
       };
 
       darknetOverride = {
-        #cudaSupport = true;
-        #cudnnSupport = true;
+        cudaSupport = true;
+        cudnnSupport = true;
       };
 
     in {
