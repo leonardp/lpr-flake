@@ -42,6 +42,26 @@
                 darknet.packages.${system}.pydnet
                 (opencv4.override opencvOverride)
               ]))
+              cowsay
+              (darknet.packages.${system}.darknet.override darknetOverride
+                // { opencv = (opencv.override opencvOverride); })
+            ];
+
+            shellHook = "cowsay Oh hai!"; # "fortune | cowsay";
+          };
+
+          notebook = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              (python3.withPackages(ps: with ps; [
+                ipython
+                jupyter
+                graphviz
+                numpy
+                pandas
+                matplotlib
+                darknet.packages.${system}.pydnet
+                (opencv4.override opencvOverride)
+              ]))
 
               (darknet.packages.${system}.darknet.override darknetOverride
                 // { opencv = (opencv.override opencvOverride); })
