@@ -4,4 +4,6 @@ data/
 .ipynb_checkpoints/
 *.zip
 *.weights
+*.jpg
+*.png
 yolov4-tiny.conv.29
