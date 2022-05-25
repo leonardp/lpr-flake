@@ -1,7 +1,7 @@
 classes= 1
-train  = train.txt
-test  = test.txt
-valid  = valid.txt
+train  = /home/leo/openimagesdataset/train.txt
+test  = /home/leo/openimagesdataset/test.txt
+valid  = /home/leo/openimagesdataset/validation.txt
 names = lpr.names
 backup = backup
 eval=lpr

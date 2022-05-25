@@ -1,7 +1,0 @@
-classes= 1
-train  = roboflow-dataset/train.txt
-test  = roboflow-dataset/test.txt
-valid  = roboflow-dataset/valid.txt
-names = lpr.names
-backup = backup
-eval=lpr
