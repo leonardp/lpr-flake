@@ -12,61 +12,52 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
 
-      #
-      ## (un)comment the flags you want here
-      #
-
       opencvOverride = {
-        enableGtk3 = true;
+        #enableGtk3 = true;
       };
 
-      darknetOverride = {
-      #  cudaSupport = true;
-      #  cudnnSupport = true;
+      cudaOverride = {
+        cudaSupport = true;
+        cudnnSupport = true;
       };
 
     in {
 
       devShells = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
+        let
+          pkgs = nixpkgsFor.${system};
+
+          shellPackages = with pkgs; [
               (python3.withPackages(ps: with ps; [
-                ipython
                 jupyter
                 graphviz
                 numpy
                 pandas
                 matplotlib
+                pytesseract
                 darknet.packages.${system}.pydnet
                 (opencv4.override opencvOverride)
               ]))
               cowsay
-              (darknet.packages.${system}.darknet.override darknetOverride
-                // { opencv = (opencv.override opencvOverride); })
+              (darknet.packages.${system}.darknet.override { opencv = (opencv.override opencvOverride); })
             ];
 
-            shellHook = "cowsay Oh hai!"; # "fortune | cowsay";
+        in {
+
+          default = pkgs.mkShell {
+            buildInputs = shellPackages;
+            shellHook = "cowsay Oh hai!";
+          };
+
+          cuda = pkgs.mkShell {
+            buildInputs = shellPackages ++ [
+              (darknet.packages.${system}.darknet.override cudaOverride)
+            ];
+            shellHook = "cowsay -w Oh hai!";
           };
 
           notebook = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              (python3.withPackages(ps: with ps; [
-                ipython
-                jupyter
-                graphviz
-                numpy
-                pandas
-                matplotlib
-                darknet.packages.${system}.pydnet
-                (opencv4.override opencvOverride)
-              ]))
-
-              (darknet.packages.${system}.darknet.override darknetOverride
-                // { opencv = (opencv.override opencvOverride); })
-            ];
-
+            buildInputs = shellPackages;
             shellHook = "jupyter notebook";
           };
       });

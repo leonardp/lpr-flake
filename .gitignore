@@ -6,4 +6,5 @@ data/
 *.weights
 *.jpg
 *.png
+*.list
 yolov4-tiny.conv.29

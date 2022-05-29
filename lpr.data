@@ -1,4 +1,4 @@
-classes= 1
+classes= 2
 train  = /home/leo/openimagesdataset/train.txt
 test  = /home/leo/openimagesdataset/test.txt
 valid  = /home/leo/openimagesdataset/validation.txt
